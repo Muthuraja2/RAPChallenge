@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_CH_EMP_PROJ_ASG'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CH_EMP_PROJ_ASG'
+  }
+}
+define service ZUI_CH_EMP_PROJ_ASG_O4 provider contracts odata_v4_ui {
+  expose ZC_CH_EMP_PROJ_ASG as EmpToProject;
+}

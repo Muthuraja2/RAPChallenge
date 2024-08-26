@@ -1,0 +1,52 @@
+managed implementation in class ZCL_CH_EMP_PROJ_ASG unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_CH_EMP_PROJ_ASG alias EmpToProject
+persistent table zch_emp_proj_asg
+draft table zch_emp_proj_a_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+
+{
+  field ( readonly )
+  EmployeeToProjUuid,
+  AllottedManDays,
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( numbering : managed )
+  EmployeeToProjUuid;
+
+  field ( mandatory ) Projectuuid, AllottedHours;
+
+  validation valMandatoryCol on save { field Employeeuuid, Projectuuid, AllottedHours; create; update; }
+  determination detAllottedManDays on save { create; }
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zch_emp_proj_asg
+    {
+      EmployeeToProjUuid = employee_to_proj_uuid;
+      Employeeuuid       = employeeuuid;
+      Projectuuid        = projectuuid;
+      AllottedHours      = allotted_hours;
+      AllottedManDays    = allotted_man_days;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}

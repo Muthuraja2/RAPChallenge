@@ -1,0 +1,107 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'ProjectName'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'ProjectName'
+@UI.headerInfo.typeName: 'Time Sheet'
+@UI.headerInfo.typeNamePlural: 'Time Sheets'
+annotate view ZC_CH_TIMESHEET with
+{
+  @EndUserText.label: 'Time sheet uuid'
+  @UI.facet: [ {
+    label: 'General Information',
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  Timesheetuuid;
+
+  @EndUserText.label: 'Employee'
+  @UI.identification: [ {
+    position: 20 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 20
+  } ]
+  @Consumption.valueHelpDefinition: [{ entity.name: 'ZC_CH_EMPLOYEE_VH', entity.element: 'Employeeuuid' }]
+  Employeeuuid;
+
+  @EndUserText.label: 'Project'
+  @UI.identification: [ {
+    position: 30 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 30
+  } ]
+  @Consumption.valueHelpDefinition: [{ entity.name: 'ZC_CH_PROJECT_VH', entity.element: 'Projectuuid' }]
+  Projectuuid;
+
+  @EndUserText.label: 'Activity'
+  @UI.identification: [ {
+    position: 40
+  } ]
+  Activity;
+
+  @EndUserText.label: 'Working Date'
+  @UI.identification: [ {
+    position: 50
+  } ]
+  @UI.lineItem: [ {
+    position: 50
+  } ]
+  WorkingDate;
+
+  @EndUserText.label: 'Working Hours'
+  @UI.identification: [ {
+    position: 60
+  } ]
+  @UI.lineItem: [ {
+    position: 60
+  } ]
+  WorkingHours;
+
+  @UI.identification: [ {
+    position: 70 ,
+    label: 'Created By'
+  } ]
+  LocalCreatedBy;
+
+  @UI.identification: [ {
+    position: 80 ,
+    label: 'Created On'
+  } ]
+  LocalCreatedAt;
+
+  @UI.identification: [ {
+    position: 90 ,
+    label: 'Changed By'
+  } ]
+  LocalLastChangedBy;
+
+  @UI.identification: [ {
+    position: 100 ,
+    label: 'Changed On'
+  } ]
+  LocalLastChangedAt;
+
+  @UI.identification: [ {
+    position: 110 ,
+    label: 'Changed On'
+  } ]
+  LastChangedAt;
+}

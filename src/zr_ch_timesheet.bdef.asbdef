@@ -1,0 +1,51 @@
+managed implementation in class ZCL_CH_TIMESHEET unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_CH_TIMESHEET alias Timesheet
+persistent table zch_timesheet
+draft table zch_timesheet_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+
+{
+  field ( readonly )
+  Timesheetuuid,
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( numbering : managed )
+  Timesheetuuid;
+
+  field ( mandatory ) Projectuuid, Employeeuuid, WorkingDate, WorkingHours;
+
+  validation valMandatoryCol on save { field Projectuuid, Employeeuuid, WorkingDate, WorkingHours; create; update; }
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zch_timesheet
+    {
+      Timesheetuuid      = timesheetuuid;
+      Employeeuuid       = employeeuuid;
+      Projectuuid        = projectuuid;
+      Activity           = activity;
+      WorkingDate        = working_date;
+      WorkingHours       = working_hours;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
